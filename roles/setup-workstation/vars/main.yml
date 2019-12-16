@@ -28,3 +28,4 @@ osp_router:
     state: present
     name: router
     network: ext_network
+
