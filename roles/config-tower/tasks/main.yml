@@ -5,3 +5,4 @@
 - include_tasks: ec2_dynamic.yml
 - include_tasks: job_template.yml
 - include_tasks: workflow_template.yml
+

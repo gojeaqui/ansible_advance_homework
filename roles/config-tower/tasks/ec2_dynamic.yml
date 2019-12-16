@@ -2,7 +2,6 @@
   command: |
     tower-cli inventory create -n "{{ec2_dynamic_inventory}}" --organization "{{org_name}}"
 
-
 - name: Create groups needed to deploy app
   command: |
     tower-cli group create -n "{{ item }}" --inventory "{{ec2_dynamic_inventory}}" 
@@ -39,3 +38,4 @@
 - name: Create inventory source with ec2 script
   command: |
     tower-cli inventory_source create -n "{{ec2_inventory_source}}" --inventory "{{ec2_dynamic_inventory}}" --source ec2 --credential "{{aws_read_keys}}" --source-regions "{{aws_region_name}}" --instance-filters "{{tag_filters}}" --overwrite yes --update-on-launch yes
+

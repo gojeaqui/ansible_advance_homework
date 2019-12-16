@@ -29,7 +29,6 @@
   command: | 
     tower-cli host associate --host "{{host_name}}" --group "{{group_name}}"
 
-
 - name: Tower Creds key file
   tower_credential:
     name: "{{ opentlc_cred_name }}"
