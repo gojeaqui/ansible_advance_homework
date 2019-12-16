@@ -9,3 +9,4 @@
     state: present
     name: ansible_ssh
     public_key_file: "{{ ansible_env.HOME }}/.ssh/test_id_rsa.pub"
+
