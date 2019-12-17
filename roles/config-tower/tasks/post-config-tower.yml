@@ -1,4 +1,10 @@
-- name: Machine Credential to connect to workstation using openstack.pub
+- name: Remove lines starting with # from /root/.ssh/openstack.pem
+  lineinfile:
+    path: /root/.ssh/openstack.pem
+    state: absent
+    regexp: '^#'
+
+- name: Machine Credential to connect to workstation using openstack.pem
   tower_credential:
     name: Connect_to_workstation
     organization: Default
