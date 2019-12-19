@@ -24,6 +24,7 @@
     loop_var: instance
     label: "{{ instance.value.name }}"
   register: instanceip
+  when: no
 
 - name: Add floating IP to Servers
   os_floating_ip:
@@ -44,26 +45,25 @@
 - name: Show Servers public IP
   debug: 
     msg: >-
-      Server "{{ instancefloatingip.instance.value.name }}", 
-      Floating IP: "{{ instancefloatingip.floating_ip.floating_ip_address }}", 
-      Fixed IP: "{{ instancefloatingip.floating_ip.fixed_ip_address }}"
+      Server "{{ instance.instance.value.name }}", 
+      Floating IP: "{{ instance.floating_ip.floating_ip_address }}", 
+      Fixed IP: "{{ instance.floating_ip.fixed_ip_address }}"
   loop:
     "{{ instancefloatingip.results }}"
   loop_control:
-    loop_var: instancefloatingip
-    label: "{{ instancefloatingip.instance.value.name }}"
+    loop_var: instance
+    label: "{{ instance.instance.value.name }}"
 
 - name: Wait for server to be available
   wait_for:
-    host: "{{ instancefloatingip.floating_ip.floating_ip_address }}"
+    host: "{{ instance.floating_ip.floating_ip_address }}"
     port: 22
     search_regex: OpenSSH
     timeout: 600
   loop:
     "{{ instancefloatingip.results }}"
   loop_control:
-    loop_var: instancefloatingip
-    label: "{{ instancefloatingip.instance.value.name }}"
-  delegate_to: "{{ instancefloatingip.floating_ip.floating_ip_address }}"
-  when: no
+    loop_var: instance
+    label: "{{ instance.instance.value.name }}"
+  delegate_to: "{{ instance.floating_ip.floating_ip_address }}"
 
