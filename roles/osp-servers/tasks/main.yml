@@ -14,6 +14,12 @@
     wait: yes
     nics:
       - net-name: int_network 
+    userdata: |
+      #!/bin/bash
+      curl -o /tmp/openstack.pub http://www.opentlc.com/download/ansible_bootcamp/openstack_keys/openstack.pub
+      cat /tmp/openstack.pub >> /home/cloud-user/.ssh/authorized_keys
+      curl -o /tmp/internal.repo http://www.opentlc.com/download/ansible_bootcamp/repo/internal.repo
+      cp /tmp/internal.repo /etc/yum.repos.d/internal.repo
   loop: 
     - frontend
     - app1
@@ -21,8 +27,9 @@
     - db
   loop_control:
     loop_var: instance
+  register: instanceip
 
-- name: Add floating IP to Servers
+- name: Add floating IP to osp_servers[instance].name
   os_floating_ip:
     cloud: ospcloud
     state: "{{ osp_servers[instance].state }}"
@@ -39,5 +46,5 @@
   loop_control:
     loop_var: instance
 
-#- name: Wait for server to be available
-
+- name: Wait for server to be available
+  
