@@ -4,19 +4,23 @@
 - name: Create new server instances and attaches them a network and passes metadata to the instance
   os_server:
     cloud: ospcloud
-    name: "{{ instance.name }}"
-    state: "{{ instance.state }}"
-    image: "{{ instance.image }}"
-    meta: "group={{ instance.meta.group }}, deployment_name={{ instance.meta.deployment_name }}"
-    flavor: "{{ instance.flavor }}"
-    security_groups: "{{ instance.security_group }}"
-    key_name: "{{ instance.key_name }}"
+    name: "{{ osp_servers[instance].name }}"
+    state: "{{ osp_servers[instance].state }}"
+    image: "{{ osp_servers[instance].image }}"
+    meta: "group={{ osp_servers[instance].meta[0].group }}, deployment_name={{ osp_servers[instance].meta[0].deployment_name }}"
+    flavor: "{{ osp_servers[instance].flavor }}"
+    security_groups: "{{ osp_servers[instance].security_group }}"
+    key_name: "{{ osp_servers[instance].key_name }}"
     wait: yes
     nics:
       - net-name: int_network 
-    loop: "{{ osp_servers }}"
-    loop_control:
-      label: "{{ instance }}"
+  loop: 
+    - frontend
+    - app1
+    - app2
+    - db
+  loop_control:
+    loop_var: instance
 
 #- name: Add floating IP to Servers
    
