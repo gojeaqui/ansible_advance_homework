@@ -8,6 +8,7 @@
        name: "workstation-{{OSP_GUID}}.rhpds.opentlc.com"
        group: workstation
 
+# This play uses the osp-servers role to create the server instances
 - hosts: workstation
   become: yes
   roles:
