@@ -1,4 +1,15 @@
+# Playbook to setup the OpenStack platform with the server instances required for the QA environment
+
+# This play creates an in-memory inventory with the correct GUID for the workstation host
+- hosts: localhost
+  tasks:
+  - name: Create workstation inventory
+    add_host:
+       name: "workstation-{{OSP_GUID}}.rhpds.opentlc.com"
+       group: workstation
+
 - hosts: workstation
   become: yes
   roles:
     - osp-servers
+

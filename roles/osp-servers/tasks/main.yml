@@ -14,12 +14,12 @@
     wait: yes
     nics:
       - net-name: int_network 
-      - net-name: ext_network 
     loop: "{{ osp_servers }}"
     loop_control:
       label: "{{ instance }}"
 
-- name: Add floating IP to Servers
+#- name: Add floating IP to Servers
    
 
-- name: Wait for server to be available
+#- name: Wait for server to be available
+
