@@ -14,8 +14,9 @@ Roles
  * osp-facts:
     * This role gets the facts from OpenStack in order to configure the instances
  * osp-instance-delete: 
-    * This role is used to delete de instances of the OpenStack cloud
+    * This role is used to delete the server instances of the OpenStack cloud
  * osp-servers:
+    * This role is used to create the server instances of the OpenStack cloud
  * osp-setup:
  * setup-workstation: 
     * This role is used to set up the workstation to work with the OpenStack cloud
