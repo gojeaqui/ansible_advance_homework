@@ -24,7 +24,6 @@
     loop_var: instance
     label: "{{ instance.value.name }}"
   register: instanceip
-  when: no
 
 - name: Add floating IP to Servers
   os_floating_ip:
