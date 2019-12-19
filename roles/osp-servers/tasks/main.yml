@@ -24,7 +24,6 @@
     loop_var: instance
     label: "{{ instance.value.name }}"
   register: instanceip
-  when: no
 
 - name: Add floating IP to Servers
   os_floating_ip:
@@ -65,5 +64,5 @@
   loop_control:
     loop_var: instance
     label: "{{ instance.instance.value.name }}"
-  delegate_to: "{{ instance.floating_ip.floating_ip_address }}"
+#  delegate_to: "{{ instance.floating_ip.floating_ip_address }}"
 
