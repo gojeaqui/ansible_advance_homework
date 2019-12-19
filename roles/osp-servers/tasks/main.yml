@@ -22,8 +22,22 @@
   loop_control:
     loop_var: instance
 
-#- name: Add floating IP to Servers
-   
+- name: Add floating IP to Servers
+  os_floating_ip:
+    cloud: ospcloud
+    state: "{{ osp_servers[instance].state }}"
+    reuse: yes
+    server: "{{ osp_servers[instance].name }}"
+    network: ext_network
+    wait: true
+    timeout: 180
+  loop:
+    - frontend
+    - app1
+    - app2
+    - db
+  loop_control:
+    loop_var: instance
 
 #- name: Wait for server to be available
 
