@@ -1,5 +1,17 @@
 ---
 # tasks file for roles/osp-instance-delete
   - name: Fetch Instance Info
+    os_server_info:
+      cloud: ospcloud
+      region_name: RegionOne
+    register: openstack_info
+
   - name: Delete instances
+    debug:
+      var: openstack_info
+    loop:
+      "{{ openstack_info.openstack_servers }}"
+    loop_control:
+      
+# TODO: usar el modulo os_server para borrar las instancias
    
