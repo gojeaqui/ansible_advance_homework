@@ -1,21 +1,35 @@
 ---
 # tasks file for osp-facts
    - name: Fetch Instance Info
-     os_server_facts:
+     os_server_info:
       cloud: ospcloud
       region_name: RegionOne
-     register: result
-   - name: Add host
+     register: openstack_info
+
+# Add hosts to server group
+   - name: Add host to group
      add_host:
-      name: "{{ item.public_v4 }}"
-      group: "{{ item.metadata.group }}"
+      name: "{{ server.public_v4 }}"
+      group: "{{ server.metadata.group }}"
       # ansible_ssh_private_key_file: ~/.ssh/openstack.pem
       # ansible_ssh_user: cloud-user
-     with_items: "{{result.ansible_facts.openstack_servers}}"
-   - name: Add host
+     loop:
+       "{{ openstack_info.openstack_servers }}"
+     loop_control:
+       loop_var: server
+       label: "{{ server.hostname }}"
+
+# Add hosts to a group defined by the server deployment environment
+   - name: Add host to environment group
      add_host:
-      name: "{{ item.public_v4 }}"
-      group: "{{ item.metadata.deployment_name }}"
+      name: "{{ server.public_v4 }}"
+      group: "{{ server.metadata.deployment_name }}"
       #      ansible_ssh_private_key_file: ~/.ssh/openstack.pem
       #  ansible_ssh_user: cloud-user
-     with_items: "{{result.ansible_facts.openstack_servers}}"
+     loop:
+       "{{ openstack_info.openstack_servers }}"
+     loop_control:
+       loop_var: server
+       label: "{{ server.hostname }}"
+
+
