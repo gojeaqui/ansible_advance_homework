@@ -5,7 +5,7 @@
     name: "{{ instance.value.name }}"
     state: "{{ instance.value.state }}"
     image: "{{ instance.value.image }}"
-    meta: "group={{ instance.value.meta[0].group }}, deployment_name={{ instance.value.meta[0].deployment_name }}"
+    meta: "group={{ instance.value.meta[0].group }},deployment_name={{ instance.value.meta[0].deployment_name }}"
     flavor: "{{ instance.value.flavor }}"
     security_groups: "{{ instance.value.security_group }}"
     key_name: "{{ instance.value.key_name }}"
