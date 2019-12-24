@@ -8,7 +8,8 @@
 
   - name: Debug
     debug:
-      msg: "Name: {{ instance.name }}"
+#      msg: "Name: {{ instance.name }}"
+      var: instance
     loop:
       "{{ openstack_info.openstack_servers }}"
     loop_control:
@@ -20,12 +21,12 @@
     os_server:
       cloud: ospcloud
       name: "{{ instance.name }}"
+      delete_fip: yes
       state: absent
     loop:
       "{{ openstack_info.openstack_servers }}"
     loop_control:
       loop_var: instance
       label: "{{ instance.name }}"
+    when: yes
  
-# TODO: usar el modulo os_server para borrar las instancias
-   
