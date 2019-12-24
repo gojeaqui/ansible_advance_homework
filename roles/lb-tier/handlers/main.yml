@@ -1,7 +1,7 @@
 ---
-# This handler makes sure that tomcat is reloaded
+# This handler makes sure that haproxy is restarted after configuration changes
 - name: restart haproxy
   service:
-    name: tomcat
+    name: "{{ payload }}"
     state: restarted
 
