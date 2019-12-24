@@ -1,2 +1,7 @@
 ---
-# handlers file for lb-tier
+# This handler makes sure that tomcat is reloaded
+- name: start {{ payload }}
+  service:
+    name: tomcat
+    state: started
+
