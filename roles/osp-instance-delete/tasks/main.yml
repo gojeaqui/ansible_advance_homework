@@ -6,12 +6,26 @@
       region_name: RegionOne
     register: openstack_info
 
-  - name: Delete instances
+  - name: Debug
     debug:
-      var: openstack_info
+      msg: "Name: {{ instance.name }}"
     loop:
       "{{ openstack_info.openstack_servers }}"
     loop_control:
-      
+      loop_var: instance
+      label: "{{ instance.name }}"
+    when: no
+
+  - name: Delete instances
+    os_server:
+      cloud: ospcloud
+      name: "{{ instance.name }}"
+      state: absent
+    loop:
+      "{{ openstack_info.openstack_servers }}"
+    loop_control:
+      loop_var: instance
+      label: "{{ instance.name }}"
+ 
 # TODO: usar el modulo os_server para borrar las instancias
    
