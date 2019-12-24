@@ -5,18 +5,15 @@
     name: "{{ payload }}"
     state: latest
 
-- name: enable {{ payload }} at boot
-  service:
-    name: "{{ payload }}"
-    enabled: yes
-
 - name: configure haproxy to load balance over app servers
   template:
     src: haproxy.cfg.j2
     dest: /etc/haproxy/haproxy.cfg
     mode: 0644
+  notice: restart haproxy
 
-- name: start {{ payload }}
+- name: start and enable {{ payload }}
   service:
     name: "{{ payload }}"
-    state: restarted
+    state: started
+    enabled: yes
