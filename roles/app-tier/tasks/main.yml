@@ -15,7 +15,7 @@
     src: index.html.j2
     dest: "{{ tomcat_web_root }}/index.html"
     mode: 0644
-  notice: restart {{ payload }}
+  notify: restart {{ payload }}
 
 - name: start and enable tomcat
   service:
