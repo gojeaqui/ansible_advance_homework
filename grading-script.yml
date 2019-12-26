@@ -26,7 +26,6 @@
     fail:
     when: "'Ansible' not in webpage.results[0].stdout" 
 
-  
 - hosts: localhost
   gather_facts: false
   tasks:
@@ -39,3 +38,4 @@
     when: "'Ansible' not in webpage.stdout" 
   - name: Success
     debug: msg="Congrats Yours HW Assignment is completed"
+
