@@ -1,3 +1,23 @@
 ---
 own_repo_path: http://admin.na.shared.opentlc.com/repos/ocp/3.6
+repos:
+  - name: "rhel-7-server-rpms"
+    description: "Red Hat Enterprise Linux 7"
+    baseurl: "{{own_repo_path}}/rhel-7-server-rpms"
+  
+  - name: "rhel-7-server-rh-common-rpms"
+    description: "Red Hat Enterprise Linux 7 Common"
+    baseurl: "{{own_repo_path}}/rhel-7-server-rh-common-rpms"
+  
+  - name: "rhel-7-server-extras-rpms"
+    description: "Red Hat Enterprise Linux 7 Extras"
+    baseurl: "{{own_repo_path}}/rhel-7-server-extras-rpms"
+  
+  - name: "rhel-7-server-optional-rpms"
+    description: "Red Hat Enterprise Linux 7 Optional"
+    baseurl: "{{own_repo_path}}/rhel-7-server-optional-rpms"
+  
+  - name: "epel"
+    description: "Extra Packages for Enterprise Linux 7 - $basearch"
+    baseurl: "https://download.fedoraproject.org/pub/epel/$releasever/$basearch/"
 
