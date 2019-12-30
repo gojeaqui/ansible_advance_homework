@@ -17,25 +17,28 @@
       server: 'frontend'
     register: openstack_info
 
-  - name: Curl website
+  - name: Get QA website
     command: curl "http://{{item.public_v4}}"
     with_items:
        - "{{ openstack_info.ansible_facts.openstack_servers }}"
     register: webpage
-  - name: Fail
+
+  - name: Check QA website
     fail:
     when: "'Ansible' not in webpage.results[0].stdout" 
 
 - hosts: localhost
   gather_facts: false
   tasks:
-  - name: Curl website
+  - name: Get Prod website
     command: curl "http://frontend1.{{ ANSIBLE_ADVANCE_GUID }}.example.opentlc.com"
     register: webpage
   - debug: var=webpage.stdout
-  - name: Fail
+
+  - name: Check Prod website
     fail:
     when: "'Ansible' not in webpage.stdout" 
-  - name: Success
+
+  - name: Success message
     debug: msg="Congrats Yours HW Assignment is completed"
 
