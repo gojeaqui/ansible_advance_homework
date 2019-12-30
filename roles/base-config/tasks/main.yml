@@ -8,24 +8,36 @@
     replace: 'Defaults  !requiretty'
     backup: yes
 
-- name: enable repos
-  template:
-    src: repos_template.j2
-    dest: /etc/yum.repos.d/open_three-tier-app.repo
-    mode: 0644
+#- name: enable repos
+#  template:
+#    src: repos_template.j2
+#    dest: /etc/yum.repos.d/open_three-tier-app.repo
+#    mode: 0644
+
+- name: Enable required repositories
+  yum_repository:
+    name: "{{ repo.name }}"
+    description: "{{ repo.description }}"
+    baseurl: "{{ repo.baseurl }}"
+    enabled: yes
+    gpgcheck: no
+    state: present
+  loop:
+    "{{ repos }}"
+  loop_control:
+    loop_var: repo
 
 #- name: setup hostname
 #  hostname:
 #    name: "{{ inventory_hostname }}"
- 
+
 - name: install base tools and packages
   yum:
-    name: "{{ package }}" 
+    name: "{{ package }}"
     state: latest
   loop:
     - httpie
     - python-pip
   loop_control:
     loop_var: package
-    
 
