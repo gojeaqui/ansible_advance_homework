@@ -6,17 +6,6 @@
       region_name: RegionOne
     register: openstack_info
 
-  - name: Debug
-    debug:
-#      msg: "Name: {{ instance.name }}"
-      var: instance
-    loop:
-      "{{ openstack_info.openstack_servers }}"
-    loop_control:
-      loop_var: instance
-      label: "{{ instance.name }}"
-    when: no
-
   - name: Delete instances
     os_server:
       cloud: ospcloud
