@@ -12,7 +12,7 @@
     tags:
       - osp.smoke
 
-  - name: Curl website
+  - name: Connect to website
     uri:
       url: "http://{{ openstack_info.openstack_servers[0].accessIPv4 }}"
       return_content: yes
