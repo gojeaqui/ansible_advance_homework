@@ -2,7 +2,13 @@
 - hosts: workstation
   become: true
   gather_facts: false
+  vars_files:
+    - creds.yml
+
   tasks:
+    - debug:
+      msg: "User: {{ param_user }}, password: {{ param_password }}"
+
     - name: Create bin directory
       file:
         path: /root/bin
