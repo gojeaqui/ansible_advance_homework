@@ -1,7 +1,7 @@
 base-config
 ===========
 
-This role creates a basic configuration on the OSP instances
+This role creates a basic configuration on the server
 
 Example Playbook
 ----------------
