@@ -19,5 +19,5 @@ repos:
   
   - name: "epel"
     description: "Extra Packages for Enterprise Linux 7 - $basearch"
-    baseurl: "https://download.fedoraproject.org/pub/epel/$releasever/$basearch/"
+    baseurl: "https://download.fedoraproject.org/pub/epel/7/$basearch/"
 
