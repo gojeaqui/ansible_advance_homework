@@ -12,32 +12,36 @@
   gather_facts: false
   tasks:
   - name: OpenStack servers
-    os_server_facts:
+    os_server_info:
       cloud: ospcloud
       server: 'frontend'
     register: openstack_info
 
   - name: Get QA website
-    command: curl "http://{{item.public_v4}}"
-    with_items:
-       - "{{ openstack_info.ansible_facts.openstack_servers }}"
+    uri:
+      url: "http://{{ openstack_info.openstack_servers[0].accessIPv4 }}"
+      return_content: yes
+      status_code: 200
     register: webpage
 
   - name: Check QA website
     fail:
-    when: "'Ansible' not in webpage.results[0].stdout" 
+    when: "'Ansible' not in webpage.content"
 
 - hosts: localhost
   gather_facts: false
   tasks:
   - name: Get Prod website
-    command: curl "http://frontend1.{{ ANSIBLE_ADVANCE_GUID }}.example.opentlc.com"
+    uri:
+      url: "http://frontend.{{ ANSIBLE_ADVANCE_GUID }}.example.opentlc.com"
+      return_content: yes
+      status_code: 200
     register: webpage
   - debug: var=webpage.stdout
 
   - name: Check Prod website
     fail:
-    when: "'Ansible' not in webpage.stdout" 
+    when: "'Ansible' not in webpage.content" 
 
   - name: Success message
     debug: msg="Congrats Yours HW Assignment is completed"
