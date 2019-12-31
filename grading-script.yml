@@ -37,7 +37,8 @@
       return_content: yes
       status_code: 200
     register: webpage
-  - debug: var=webpage.stdout
+
+  - debug: var=webpage.content
 
   - name: Check Prod website
     fail:
