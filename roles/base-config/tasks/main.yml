@@ -19,7 +19,6 @@
     name: "{{ repo.name }}"
     description: "{{ repo.description }}"
     baseurl: "{{ repo.baseurl }}"
-    mirrorlist: "{{ repo.mirrorlist }}"
     enabled: yes
     gpgcheck: no
     state: present
