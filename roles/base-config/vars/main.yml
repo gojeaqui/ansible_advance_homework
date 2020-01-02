@@ -5,18 +5,22 @@ repos:
   - name: "rhel-7-server-rpms"
     description: "Red Hat Enterprise Linux 7"
     baseurl: "{{own_repo_path}}/rhel-7-server-rpms"
+    mirrorlist:
   
   - name: "rhel-7-server-rh-common-rpms"
     description: "Red Hat Enterprise Linux 7 Common"
     baseurl: "{{own_repo_path}}/rhel-7-server-rh-common-rpms"
+    mirrorlist:
   
   - name: "rhel-7-server-extras-rpms"
     description: "Red Hat Enterprise Linux 7 Extras"
     baseurl: "{{own_repo_path}}/rhel-7-server-extras-rpms"
+    mirrorlist:
   
   - name: "rhel-7-server-optional-rpms"
     description: "Red Hat Enterprise Linux 7 Optional"
     baseurl: "{{own_repo_path}}/rhel-7-server-optional-rpms"
+    mirrorlist:
   
   - name: "epel"
     description: "Extra Packages for Enterprise Linux 7 - $basearch"
