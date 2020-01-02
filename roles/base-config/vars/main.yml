@@ -18,7 +18,8 @@ repos:
     description: "Red Hat Enterprise Linux 7 Optional"
     baseurl: "{{own_repo_path}}/rhel-7-server-optional-rpms"
   
-#  - name: "epel"
-#    description: "Extra Packages for Enterprise Linux 7 - $basearch"
-#    baseurl: "https://download.fedoraproject.org/pub/epel/7/$basearch/"
+  - name: "epel"
+    description: "Extra Packages for Enterprise Linux 7 - $basearch"
+    baseurl: "https://download.fedoraproject.org/pub/epel/7/$basearch/"
+    mirrorlist: "http://mirrors.fedoraproject.org/metalink?repo=epel-7&arch=$basearch"
 
